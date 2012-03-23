@@ -1,0 +1,10 @@
+Virtui Software
+Development Version
+
+Software is a Django admin modification.  Requires > Django 1.3 and the python-libvirt module.
+
+To create database run:
+
+>python manage.py syncdb
+
+In your working directory.
