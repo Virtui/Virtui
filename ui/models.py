@@ -61,7 +61,7 @@ class Network(models.Model):
     uuid = autofield.UUID(editable=False)
     bridge = models.CharField(max_length=16,null=True,blank=True,
 		help_text="The name of the bridge to create.  Leave blank for no bridge")
-    bridge_stp = models.BooleanField(default=1,
+    bridge_stp = models.CharField(max_length=3,default='on', choices=choices.STP_CHOICES,
 		help_text='Whether spanning tree is enabled on the bridge: default True')
     bridge_delay = models.BigIntegerField(default=0,
 		help_text='Bridge forward delay in seconds: default 0')
@@ -89,3 +89,26 @@ class Network(models.Model):
     #### Define Object as A Field #####
     def __unicode__(self):
         return self.name
+
+class Vlan(models.Model):
+
+    #### Field Definitions ####
+    hypervisor = models.ManyToManyField(Hypervisor)
+    name = models.CharField(max_length=16,editable=False)
+    vlan_tag = models.BigIntegerField(max_length=4,
+        help_text='Please enter the VLAN tag number (1-4096): example 100')
+    start_mode = models.CharField(max_length=16, default='onboot',
+        choices=choices.STARTMODE_CHOICES,
+        help_text='Whether it should start automatically on hypervisor restart: default onboot')
+    protocol_family = models.CharField(max_length=16,default='ipv4',
+        choices=choices.PROTOCOL_CHOICES,
+        help_text='The protocol to use: default ipv4')
+
+    #### Define Object as A Field #####
+    def __unicode__(self):
+        return self.name
+
+    #### Trigger To Do Before Saving ####
+    def save(self, *args, **kwargs):
+        self.name = "VLAN" + str(self.vlan_tag)
+        super(Vlan, self).save(*args, **kwargs) # Call the "real" save() method.

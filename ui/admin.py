@@ -1,4 +1,4 @@
-from ui.models import Datacenter, Hypervisor, Network
+from ui.models import Datacenter, Hypervisor, Network, Vlan
 from django.contrib import admin
 from django.contrib.auth.admin import GroupAdmin
 
@@ -26,7 +26,12 @@ class NetworkAdmin(admin.ModelAdmin):
 
       list_display = ('name','hypervisor','bridge', 'forward_mode','dhcp_start','dhcp_end','vlan_tag')
 
+class VlanAdmin(admin.ModelAdmin):
+    filter_horizontal = ('hypervisor',)
+
+    list_display =  ('name','vlan_tag','start_mode','protocol_family')
 
 admin.site.register(Hypervisor,HypervisorAdmin)
 admin.site.register(Datacenter,DatacenterAdmin)
 admin.site.register(Network,NetworkAdmin)
+admin.site.register(Vlan,VlanAdmin)

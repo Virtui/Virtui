@@ -1,3 +1,18 @@
+STP_CHOICES = (
+    ('on','on'),
+    ('off','off')
+)
+
+PROTOCOL_CHOICES = (
+    ('ipv4','ipv4'),
+    ('ipv6','ipv6')
+)
+
+STARTMODE_CHOICES = (
+    ('onboot','onboot'),
+    ('manual','manual')
+)
+
 FORWARD_CHOICES = (
     ('nat','nat'),
     ('route','route'),
