@@ -1,0 +1,32 @@
+<network>
+  <name>{{ name }}</name>
+  <uuid>{{ uuid }}</uuid>
+  {% if bridge != None %}
+  {% bridge_delay=100 %}
+  <bridge name="{{ bridge }}" stp="{{ bridge_stp }}" delay="{{ bridge_delay }}"/>
+  <mac address="{{ bridge_mac }}" />
+  <ip address="{{ dhcp_ip }}" netmask="{{ dhcp_netmask }}">
+    <dhcp>
+      <range start="{{ dhcp_start }}" end="{{ dhcp_end }}" />
+    </dhcp>
+  </ip>
+  {% endif %}
+  <forward mode="{{ forward_mode }}"/>
+  {% if inbound_avg != None or inbound_peak != None %}
+  {% if inbound_peak != None %}
+  {% if inbound_burst != None %}
+  {% if outbound_avg != None %}
+  {% if outbound_peak != None %}
+  {% if outbound_burst != None %}
+  <bandwidth>
+    <inbound average="{{ inbound_avg }}" peak="{{ inbound_peak }}" burst="{{ inbound_burst }}" />
+    <outbound average="{{ outbound_avg }}" peak="{{ outbound_peak }}" burst="{{ outbound_burst }}" />
+  </bandwidth>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+bob
+</network>

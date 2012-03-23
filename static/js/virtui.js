@@ -1,0 +1,2 @@
+/*Various virtui javascript functions*/
+

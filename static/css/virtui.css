@@ -1,0 +1,36 @@
+.navigator{
+   width:10%;
+   float:left;
+   height:600px;
+   border:1px solid #CCC;
+   border-top:none;
+   border-bottom:none;
+   margin-right:10px;
+   margin-top: 1px;
+}
+.navigator ul{
+   background:  #bbd1e8;
+   margin:0; 
+   padding:0;
+}
+.navigator ul li{
+   list-style: none;
+   border-top: 1px solid #1d467e;
+   background: #bbd1e8 url(/static/img/admin/default-bg-reverse.gif) 0 0px repeat-x;
+   padding-left:5px;
+}
+.navigator ul li a{
+   height: 25px;
+   line-height: 25px;
+   background: url(/static/img/admin/arrow-bullet.png) no-repeat center left;  
+   border: none;
+   width: 100%;
+   text-indent: 15px;
+   font-weight: bold;
+   display:block;
+   color: #FFF;
+}
+.navigator ul li a:hover {
+   position: relative;
+   text-decoration: underline;
+}
